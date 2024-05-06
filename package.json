@@ -1,0 +1,82 @@
+{
+  "name": "codemod",
+  "version": "0.0.0",
+  "main": "transforms/index.js",
+  "repository": "git@github.com:jowapp/codemod.git",
+  "author": "jow",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "prepare": "husky install",
+    "test": "vitest watch",
+    "release": "standard-version"
+  },
+  "dependencies": {
+    "jscodeshift": "^0.15.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.2.5",
+    "standard-version": "^9.5.0",
+    "vitest": "^1.6.0"
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "prettier -w CHANGELOG.md"
+    },
+    "releaseCommitMessageFormat": "release: {{currentTag}}\n",
+    "types": [
+      {
+        "type": "build",
+        "hidden": true
+      },
+      {
+        "type": "chore",
+        "section": "Misc Changes"
+      },
+      {
+        "type": "ci",
+        "section": "Misc Changes"
+      },
+      {
+        "type": "docs",
+        "section": "Misc Changes"
+      },
+      {
+        "type": "feat",
+        "section": "Features"
+      },
+      {
+        "type": "fix",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "perf",
+        "section": "Misc Changes"
+      },
+      {
+        "type": "refactor",
+        "section": "Misc Changes"
+      },
+      {
+        "type": "release",
+        "hidden": true
+      },
+      {
+        "type": "revert",
+        "section": "Bug Fixes"
+      },
+      {
+        "type": "style",
+        "section": "Misc Changes"
+      },
+      {
+        "type": "test",
+        "section": "Misc Changes"
+      }
+    ]
+  }
+}
