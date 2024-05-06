@@ -5,7 +5,7 @@ Simple set of codemod transformations
 ## Usage
 
 ```sh
-npx react-codemod <transform> <path> [...options]
+npx @jowapp/codemod <transform> <path> [...options]
 ```
 
 - `transform` - name of transform, see available transforms below.
