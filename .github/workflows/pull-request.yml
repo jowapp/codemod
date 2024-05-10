@@ -1,0 +1,67 @@
+name: 'Pull Request'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review, auto_merge_enabled]
+    paths-ignore:
+      - '**.md'
+
+env:
+  NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+jobs:
+  install:
+    name: 'Install'
+    runs-on: [self-hosted]
+
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+
+      - name: 'Set up Node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: 'Cache node_modules'
+        uses: actions/cache@v4
+        id: cache-node-modules-pr
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-cache-node-modules-pr-${{ hashFiles('**/yarn.lock') }}
+
+      - name: 'Install dependencies'
+        if: steps.cache-node-modules-pr.outputs.cache-hit != 'true'
+        run: yarn install --immutable --immutable-cache --check-cache
+
+  test:
+    name: 'Test'
+    needs: [install]
+    runs-on: [self-hosted]
+
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+
+      - name: 'Set up Node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 'Get node_modules cache'
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-cache-node-modules-pr-${{ hashFiles('**/yarn.lock') }}
+
+      - name: 'Vitest'
+        run: yarn test:run
