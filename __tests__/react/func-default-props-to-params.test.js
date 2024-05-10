@@ -3,15 +3,13 @@
 import path from 'node:path'
 
 const jsTests = [
-  'arrow-function-expression-w-default-export-object',
-  // 'arrow-function-expression-wo-default-props',
-  'forward-ref-arrow-function-expression-w-default-export-object',
-  // 'arrow-function-expression-w-named-exports.input',
-  // 'arrow-function-expression-w-default-export-memo',
+  // 'function-component',
+  'function-component-w-default-export',
+  'forward-ref-function-component-w-default-export',
+  // 'memo-function-component-w-default-export',
 ]
 
 const defineTest = require('jscodeshift/src/testUtils').defineTest
-const transform = require('../../transforms/react/func-default-props-to-params')
 
 describe('react.func-default-props-to-params', () => {
   jsTests.forEach((test) =>
