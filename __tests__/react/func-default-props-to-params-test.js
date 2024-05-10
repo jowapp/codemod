@@ -3,8 +3,9 @@
 import path from 'node:path'
 
 const jsTests = [
+  'arrow-function-expression-w-default-export-object',
+  // 'arrow-function-expression-wo-default-props',
   'forward-ref-arrow-function-expression-w-default-export-object',
-  // 'arrow-function-expression-w-default-export-object',
   // 'arrow-function-expression-w-named-exports.input',
   // 'arrow-function-expression-w-default-export-memo',
 ]
