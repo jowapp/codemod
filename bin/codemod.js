@@ -28,8 +28,6 @@ const TRANSFORMERS = [
       `${transformer} not found in available transformers, using current working directory default 'transform.js' (if any).`,
     )
     transformerPath = path.resolve('transform.js')
-    console.log(transformerPath)
-    return
   } else {
     transformerPath = path.join(transformerDirectory, `${path.join(...transformer.split('.'))}.js`)
   }
