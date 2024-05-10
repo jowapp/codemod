@@ -7,7 +7,7 @@
   "private": false,
   "scripts": {
     "prepare": "husky install",
-    "test": "vitest run --config ./vitest.config.js",
+    "test:run": "vitest run",
     "test:watch": "vitest watch",
     "release": "standard-version"
   },
