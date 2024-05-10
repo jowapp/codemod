@@ -5,7 +5,7 @@ export default (configEnv) => {
   const config = {
     test: {
       environment: 'node',
-      include: [...configDefaults.include, '**/__tests__/**/*.[jt]s?(x)'],
+      include: [...configDefaults.include, '__tests__/**/*.js'],
       globals: true,
     },
   }

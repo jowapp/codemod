@@ -16,7 +16,8 @@ This will start an interactive wizard, and then run the specified transform.
 
 All jscodeshift's options are supported, and defaults are the same than the one of jscodeshift's CLI.
 
-Note: jscodeshift's option defaults apply only to its CLI, its API has none, except the parser which defaults to `@babel/parser` (see `babel5Compat.js`)
+> [!NOTE]
+> jscodeshift's option defaults apply only to its CLI, its API has none, except the parser which defaults to `@babel/parser` (see `babel5Compat.js`)
 
 > All options are also passed to the transformer, which means you can supply custom options that are not listed here.
 
