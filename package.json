@@ -17,6 +17,7 @@
     "prepare": "husky install",
     "test:run": "vitest run",
     "test:watch": "vitest watch",
+    "prepublish": "yarn test:run",
     "release": "standard-version"
   },
   "dependencies": {
