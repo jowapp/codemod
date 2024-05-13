@@ -1,6 +1,6 @@
 {
   "name": "@jowapp/codemod",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "repository": "git@github.com:jowapp/codemod.git",
   "author": "jow",
   "license": "MIT",
