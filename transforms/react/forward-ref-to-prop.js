@@ -122,11 +122,6 @@ module.exports = (fileInfo, api, options) => {
   }
 
   return isDirty ? root.toSource(printOptions) : null
-  // same as:
-  // return isDirty ? recast.print(root.__paths[0], printOptions).code : null
-
-  // or:
-  // return isDirty ? recast.prettyPrint(root.__paths[0], printOptions).code : null
 }
 
 // module.exports.parser = 'babel'
