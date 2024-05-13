@@ -1,16 +1,19 @@
 'use strict'
 
 import path from 'node:path'
+import fs from 'fs'
 
 const jsTests = [
-  'arrow-function-expression-w-default-export-object',
-  // 'arrow-function-expression-wo-default-props',
-  'forward-ref-arrow-function-expression-w-default-export-object',
-  // 'arrow-function-expression-w-named-exports.input',
-  // 'arrow-function-expression-w-default-export-memo',
+  'function-component',
+  'function-component-w-default-export',
+  'function-component-w-named-exports',
+  'memo-function-component-w-default-export',
+  'forward-ref-function-component-w-default-export',
 ]
 
-const defineTest = require('jscodeshift/src/testUtils').defineTest
+const jsTestsNoOutput = ['function-component-wo-default-props']
+
+const defineTest = require('jscodeshift/dist/testUtils').defineTest
 const transform = require('../../transforms/react/func-default-props-to-params')
 
 describe('react.func-default-props-to-params', () => {
@@ -22,4 +25,29 @@ describe('react.func-default-props-to-params', () => {
       `react/func-default-props-to-params/${test}`, // above dirName arg also applies to __testfixtures__
     ),
   )
+})
+
+describe('react.func-default-props-to-params', () => {
+  jsTestsNoOutput.forEach((test) => {
+    const applyTransform = require('jscodeshift/dist/testUtils').applyTransform
+    const transformOptions = {}
+    const fixtureDir = path.join(
+      __dirname,
+      '..',
+      '..',
+      '__testfixtures__',
+      'react',
+      'func-default-props-to-params',
+    )
+    const inputPath = path.join(fixtureDir, test + '.input.js')
+    const inputSource = fs.readFileSync(inputPath, 'utf8')
+    const output = applyTransform(transform, transformOptions, {
+      source: inputSource,
+      path: inputPath,
+    })
+    it('should be empty string (null transform output)', () => {
+      // applyTransform returns (output || '').trim()
+      expect(output).toBe('')
+    })
+  })
 })
