@@ -2,6 +2,8 @@
 
 import path from 'node:path'
 import fs from 'fs'
+import { defineTest } from 'jscodeshift/dist/testUtils'
+import transform from '../../transforms/react/func-default-props-to-params'
 
 const jsTests = [
   'function-component',
@@ -12,9 +14,6 @@ const jsTests = [
 ]
 
 const jsTestsNoOutput = ['function-component-wo-default-props']
-
-const defineTest = require('jscodeshift/dist/testUtils').defineTest
-const transform = require('../../transforms/react/func-default-props-to-params')
 
 describe('react.func-default-props-to-params', () => {
   jsTests.forEach((test) =>
