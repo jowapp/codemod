@@ -1,7 +1,15 @@
 {
   "name": "@jowapp/codemod",
   "version": "0.0.0",
-  "repository": "git@github.com:jowapp/codemod.git",
+  "description": "Simple set of codemod transformations",
+  "bugs": {
+    "url": "https://github.com/jowapp/codemod/issues"
+  },
+  "homepage": "https://github.com/jowapp/codemod#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jowapp/codemod.git"
+  },
   "author": "jow",
   "license": "MIT",
   "private": false,
@@ -26,7 +34,7 @@
     "vitest": "^1.6.0"
   },
   "bin": {
-    "codemod": "./bin/codemod.js"
+    "codemod": "bin/codemod.js"
   },
   "standard-version": {
     "scripts": {
