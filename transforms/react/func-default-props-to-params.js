@@ -13,24 +13,15 @@ module.exports = (fileInfo, api, options) => {
   )
     return null // no defaultProps, skip transform
 
-  const componentExportDefaultDeclCol = root.find(j.ExportDefaultDeclaration).find(j.Identifier)
-
-  if (componentExportDefaultDeclCol.length <= 0) {
-    throw new Error(
-      'Cannot find a default export declaration. This codemod only supports a single FC with defaultProps per file with the following syntax: `export default <ComponentName>`',
-    )
-  }
-
-  const componentName = componentExportDefaultDeclCol.get().node.name
-
   const defaultPropsCol = root.find(j.AssignmentExpression, {
     left: {
-      object: { name: componentName },
       property: { name: 'defaultProps' },
     },
   })
 
   if (defaultPropsCol.length <= 0) return null // skip transform
+
+  const componentName = defaultPropsCol.find(j.MemberExpression).find(j.Identifier).get().node.name
 
   const defaultPropsPropertiesNodePath = defaultPropsCol.get('right', 'properties')
 
