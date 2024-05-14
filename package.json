@@ -10,6 +10,12 @@
     "type": "git",
     "url": "git+ssh://git@github.com/jowapp/codemod.git"
   },
+  "keywords": [
+    "codemod",
+    "react",
+    "jscodeshift",
+    "transform"
+  ],
   "author": "jow",
   "license": "MIT",
   "private": false,
