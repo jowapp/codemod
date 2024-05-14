@@ -16,7 +16,7 @@ const transformTests = [
   'forward-ref-function-component-w-default-export',
 ]
 
-const noTransformTests = ['function-component-wo-default-props']
+const noTransformTests = ['function-component-wo-default-props', 'class-component']
 
 const fixturesDir = path.join(
   __dirname,

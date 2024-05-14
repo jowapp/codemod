@@ -36,9 +36,17 @@ module.exports = (fileInfo, api, options) => {
   const defaultPropsNames = defaultPropsPropertiesNodePath.map((prop) => prop.node.key.name)
   const defaultPropsValues = defaultPropsPropertiesNodePath.map((prop) => prop.node.value)
 
-  const componentPropsObjectPropertiesNodePath = root
+  const componentCol = root
     .find(j.VariableDeclarator, { id: { name: componentName } }) // returns a jscodeshift Collection
     .find(j.ArrowFunctionExpression)
+  if (componentCol.length <= 0) {
+    process.stdout.write(
+      'Class components will continue to support `defaultProps` on React 19 since there is no ES6 alternative. Please consider using `static defaultProps` to remove this alert.\r',
+    )
+    return null // skip transform
+  }
+
+  const componentPropsObjectPropertiesNodePath = componentCol
     .at(0) // returns the 1st ast-types NodePath, with name 'init', or 0 for the argument (assuming there is only one ObjectPattern in the params, so no: ({ a }, { b }) => {...}) of a forwardRef CallExpression
     .get('params', 0, 'properties') // returns an ast-types NodePath
 
