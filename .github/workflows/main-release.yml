@@ -1,0 +1,83 @@
+name: 'Main'
+
+concurrency: main
+
+on:
+  push:
+    tags:
+      - v*.*.*
+
+env:
+  NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+jobs:
+
+  release_note:
+    name: 'Release note'
+    runs-on: [self-hosted]
+
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: 'Extract latest changes'
+        run: diff --changed-group-format='%>' --unchanged-group-format='' <( git show HEAD~1:CHANGELOG.md ) CHANGELOG.md > RELEASE_NOTES.md || true
+
+      - name: 'Create release'
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: RELEASE_NOTES.md
+
+  install:
+    name: 'Install'
+    runs-on: [self-hosted]
+
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+
+      - name: 'Set up Node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+
+      - name: 'Cache node_modules'
+        uses: actions/cache@v4
+        id: cache-node-modules-main
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-cache-node-modules-main-${{ hashFiles('**/yarn.lock') }}
+
+      - name: 'Install dependencies'
+        if: steps.cache-node-modules-main.outputs.cache-hit != 'true'
+        run: yarn install --immutable --immutable-cache --check-cache
+
+  test:
+    name: 'Test'
+    needs: [install]
+    runs-on: [self-hosted]
+
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v4
+
+      - name: 'Set up Node'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 'Get node_modules cache'
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-cache-node-modules-main-${{ hashFiles('**/yarn.lock') }}
+
+      - name: 'Vitest'
+        run: yarn test:run
