@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/jowapp/codemod/compare/v1.0.2...v1.1.0) (2024-05-14)
+
+### Features
+
+- **bin:** change verbose level to 0 by default ([d894691](https://github.com/jowapp/codemod/commit/d894691937bf88987eae88d8a689983d49f53821))
+
 ### [1.0.2](https://github.com/jowapp/codemod/compare/v1.0.1...v1.0.2) (2024-05-14)
 
 ### Misc Changes
