@@ -1,6 +1,8 @@
-# codemod
+# @jowtech/codemod
 
-Simple set of codemod transformations
+[![NPM Version](https://img.shields.io/npm/v/%40jowtech%2Fcodemod?style=for-the-badge&logo=npm&color=%23cb3837&cacheSeconds=60)](https://www.npmjs.com/package/@jowtech/codemod)
+
+Simple set of codemod transformations created by [Jow](https://jow.com)'s tech team.
 
 ## Usage
 
