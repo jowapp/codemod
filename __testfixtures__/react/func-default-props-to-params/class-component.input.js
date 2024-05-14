@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 class C extends Component {
   constructor(props) {
@@ -6,6 +6,13 @@ class C extends Component {
     this.state = {
       count: 0,
     }
+  }
+  
+  render() {
+    const { onChange, type, value } = this.props
+    return (
+      <input onChange={onChange} type={type} value={value} />
+    )
   }
 };
 
