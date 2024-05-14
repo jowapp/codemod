@@ -1,8 +1,8 @@
 'use strict'
 
-import path from 'node:path'
+import path from 'path'
 import fs from 'fs'
-import { defineTest } from 'jscodeshift/dist/testUtils'
+import { defineTest, applyTransform } from 'jscodeshift/dist/testUtils'
 import transform from '../../transforms/react/func-default-props-to-params'
 
 const jsTests = [
@@ -18,6 +18,8 @@ const jsTests = [
 
 const jsTestsNoOutput = ['function-component-wo-default-props']
 
+const fixtureDir = path.join(__dirname, '../../__testfixtures__/react/func-default-props-to-params')
+
 describe('react.func-default-props-to-params', () => {
   jsTests.forEach((test) =>
     defineTest(
@@ -32,23 +34,14 @@ describe('react.func-default-props-to-params', () => {
     it.each(jsTestsNoOutput)(
       'does not transform using "react/func-default-props-to-params/%s"',
       (test) => {
-        const applyTransform = require('jscodeshift/dist/testUtils').applyTransform
-        const transformOptions = {}
-        const fixtureDir = path.join(
-          __dirname,
-          '..',
-          '..',
-          '__testfixtures__',
-          'react',
-          'func-default-props-to-params',
-        )
-        const inputPath = path.join(fixtureDir, test + '.input.js')
+        const inputPath = path.join(fixtureDir, `${test}.input.js`)
         const inputSource = fs.readFileSync(inputPath, 'utf8')
-        const output = applyTransform(transform, transformOptions, {
+        const output = applyTransform(transform, undefined, {
           source: inputSource,
           path: inputPath,
         })
-        expect(output).toBe('')
+        expect(output).toBeDefined()
+        expect(output).toEqual('')
       },
     )
   })

@@ -1,8 +1,9 @@
 'use strict'
 
-import path from 'node:path'
+import path from 'path'
 import fs from 'fs'
-import { defineTest } from 'jscodeshift/dist/testUtils'
+import { defineTest, applyTransform } from 'jscodeshift/dist/testUtils'
+
 import transform from '../../transforms/react/forward-ref-to-prop'
 
 const jsTests = [
@@ -13,6 +14,8 @@ const jsTests = [
 ]
 
 const jsTestsNoOutput = ['no-forward-ref']
+
+const fixtureDir = path.join(__dirname, '../../__testfixtures__/react/forward-ref-to-prop')
 
 describe('react.forward-ref-to-prop', () => {
   jsTests.forEach((test) =>
@@ -26,23 +29,14 @@ describe('react.forward-ref-to-prop', () => {
 
   describe('transforms/react/forward-ref-to-prop', () => {
     it.each(jsTestsNoOutput)('does not transform using "react/forward-ref-to-prop/%s"', (test) => {
-      const applyTransform = require('jscodeshift/dist/testUtils').applyTransform
-      const transformOptions = {}
-      const fixtureDir = path.join(
-        __dirname,
-        '..',
-        '..',
-        '__testfixtures__',
-        'react',
-        'forward-ref-to-prop',
-      )
-      const inputPath = path.join(fixtureDir, test + '.input.js')
+      const inputPath = path.join(fixtureDir, `${test}.input.js`)
       const inputSource = fs.readFileSync(inputPath, 'utf8')
-      const output = applyTransform(transform, transformOptions, {
+      const output = applyTransform(transform, undefined, {
         source: inputSource,
         path: inputPath,
       })
-      expect(output).toBe('')
+      expect(output).toBeDefined()
+      expect(output).toEqual('')
     })
   })
 })
