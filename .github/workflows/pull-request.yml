@@ -16,7 +16,7 @@ env:
 jobs:
   install:
     name: 'Install'
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
 
     steps:
       - name: 'Checkout repository'
@@ -44,7 +44,7 @@ jobs:
   test:
     name: 'Test'
     needs: [install]
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
 
     steps:
       - name: 'Checkout repository'
