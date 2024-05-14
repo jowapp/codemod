@@ -5,7 +5,7 @@ Simple set of codemod transformations
 ## Usage
 
 ```sh
-npx @jowapp/codemod <transform> <path> [...options]
+npx @jowtech/codemod <transform> <path> [...options]
 ```
 
 - `transform` - name of transform, see available transforms below.
@@ -27,7 +27,7 @@ All [jscodeshift's options](https://github.com/facebook/jscodeshift?tab=readme-o
 #### `react.func-default-props-to-params`
 
 ```sh
-npx @jowapp/codemod react.func-default-props-to-params <path>
+npx @jowtech/codemod react.func-default-props-to-params <path>
 ```
 
 Converts functional components default props onto default parameters.
@@ -35,7 +35,7 @@ Converts functional components default props onto default parameters.
 #### `react.forward-ref-to-prop`
 
 ```sh
-npx @jowapp/codemod react.forward-ref-to-prop <path>
+npx @jowtech/codemod react.forward-ref-to-prop <path>
 ```
 
 Converts `forwardRef` to regular `ref` prop.

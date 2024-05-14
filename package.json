@@ -1,5 +1,5 @@
 {
-  "name": "@jowapp/codemod",
+  "name": "@jowtech/codemod",
   "version": "1.0.0",
   "description": "Simple set of codemod transformations",
   "bugs": {
