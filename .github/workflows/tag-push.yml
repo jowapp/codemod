@@ -1,6 +1,6 @@
-name: 'Main'
+name: 'Release'
 
-concurrency: main
+concurrency: release
 
 on:
   push:
