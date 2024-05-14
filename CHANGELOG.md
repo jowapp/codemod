@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/jowapp/codemod/compare/v1.0.0...v1.0.1) (2024-05-14)
+
+### Misc Changes
+
+- rename package ([ef66a59](https://github.com/jowapp/codemod/commit/ef66a59500156245a0b6ae928d455a0ae03892c4))
+
 ## 1.0.0 (2024-05-14)
 
 ### Features
