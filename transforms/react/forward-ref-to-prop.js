@@ -1,12 +1,10 @@
 module.exports = (fileInfo, api, options) => {
-  // console.log(fileInfo.path)
   const j = api.jscodeshift
   const printOptions = options.printOptions || {}
   const root = j(fileInfo.source)
 
   let isDirty = false
 
-  // { ref: refName, ...propsName }
   const buildRefAndPropsObjectPattern = (j, refArgName, propArgName) =>
     j.objectPattern([
       j.objectProperty.from({
@@ -43,8 +41,6 @@ module.exports = (fileInfo, api, options) => {
       const renderFunction = getForwardRefRenderFunction(j, callExpressionPath.node)
 
       if (renderFunction === null) {
-        console.warn('Could not detect render function.')
-
         return originalCallExpression
       }
 
@@ -54,8 +50,6 @@ module.exports = (fileInfo, api, options) => {
         !j.Identifier.check(refArg) ||
         !(j.Identifier.check(propsArg) || j.ObjectPattern.check(propsArg))
       ) {
-        console.warn('Could not detect ref or props arguments.')
-
         return originalCallExpression
       }
 
@@ -121,5 +115,3 @@ module.exports = (fileInfo, api, options) => {
 
   return isDirty ? root.toSource(printOptions) : null
 }
-
-// module.exports.parser = 'babel'

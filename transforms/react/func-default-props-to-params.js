@@ -1,5 +1,4 @@
 module.exports = (fileInfo, api, options) => {
-  // console.log(fileInfo.path)
   const j = api.jscodeshift
   const printOptions = options.printOptions || { quote: 'single' }
   const root = j(fileInfo.source)
@@ -9,9 +8,10 @@ module.exports = (fileInfo, api, options) => {
       left: {
         property: { name: 'defaultProps' },
       },
-    }).length <= 0
-  )
-    return null // no defaultProps, skip transform
+    })?.length <= 0
+  ) {
+    return null
+  }
 
   const defaultPropsCol = root.find(j.AssignmentExpression, {
     left: {
@@ -19,7 +19,9 @@ module.exports = (fileInfo, api, options) => {
     },
   })
 
-  if (defaultPropsCol.length <= 0) return null // skip transform
+  if (defaultPropsCol.length <= 0) {
+    return null
+  }
 
   const componentName = defaultPropsCol.find(j.MemberExpression).find(j.Identifier).get().node.name
 
@@ -27,7 +29,7 @@ module.exports = (fileInfo, api, options) => {
 
   if (defaultPropsPropertiesNodePath.node.type !== 'ObjectExpression') {
     throw new Error(
-      `The right operand of the defaultProps assignment expression for component ${componentName} is not of type ObjectExpression. This codemod only support on object literal (and not a variable identifier or function call yet...)`,
+      `Cannot transform \`${componentName}\`. This codemod only support on object initializer as \`defaultProps\`.`,
     )
   }
 
@@ -78,5 +80,3 @@ module.exports = (fileInfo, api, options) => {
 
   return root.toSource(printOptions)
 }
-
-// module.exports.parser = 'babel'
