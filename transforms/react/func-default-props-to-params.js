@@ -8,7 +8,7 @@ module.exports = (fileInfo, api, options) => {
       left: {
         property: { name: 'defaultProps' },
       },
-    })?.length <= 0
+    }).length <= 0
   ) {
     return null
   }
