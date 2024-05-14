@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/jowapp/codemod/compare/v1.2.0...v1.2.1) (2024-05-14)
+
+### Misc Changes
+
+- add npm shield ([d09ba73](https://github.com/jowapp/codemod/commit/d09ba739529f3ec12495859a64e854287e4ec280))
+
 ## [1.2.0](https://github.com/jowapp/codemod/compare/v1.1.0...v1.2.0) (2024-05-14)
 
 ### Features
