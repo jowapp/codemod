@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/jowapp/codemod/compare/v1.2.1...v1.2.2) (2024-05-14)
+
+### Misc Changes
+
+- use github runners ([ba669ca](https://github.com/jowapp/codemod/commit/ba669caf19cca00133863cf8f3313532a0fcb66d))
+
 ### [1.2.1](https://github.com/jowapp/codemod/compare/v1.2.0...v1.2.1) (2024-05-14)
 
 ### Misc Changes

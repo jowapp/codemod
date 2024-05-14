@@ -1,6 +1,6 @@
 {
   "name": "@jowtech/codemod",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Simple set of codemod transformations",
   "bugs": {
     "url": "https://github.com/jowapp/codemod/issues"
