@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/jowapp/codemod/compare/v1.1.0...v1.2.0) (2024-05-14)
+
+### Features
+
+- skip instead of error for class components ([#5](https://github.com/jowapp/codemod/issues/5)) ([ae891fb](https://github.com/jowapp/codemod/commit/ae891fbd00eb201b28167a7bb8a0ed6dcf8c68e0))
+
+### Misc Changes
+
+- add more scenarios to react.func-default-props-to-params ([d45dcc7](https://github.com/jowapp/codemod/commit/d45dcc721b4fb574ff4344086e09dc13f489a371))
+- clean test suites ([885ca80](https://github.com/jowapp/codemod/commit/885ca80f93e06db82642bfc5d80030961d042a02))
+- remove comments and clean code ([ff44a23](https://github.com/jowapp/codemod/commit/ff44a238253350b92a0d6896034dbd0e8bf98da1))
+- remove state from class fixture ([2f40819](https://github.com/jowapp/codemod/commit/2f408193da07d0e939e68d2993cdc9fc474c4d1e))
+- remove useless optional chaining ([3e4b774](https://github.com/jowapp/codemod/commit/3e4b774ef6ec9918f3125535a7368f81fc68f524))
+- rename vars on test suites ([b692ab4](https://github.com/jowapp/codemod/commit/b692ab457a0bee7529c988a97fbede544d6fa6a1))
+
 ## [1.1.0](https://github.com/jowapp/codemod/compare/v1.0.2...v1.1.0) (2024-05-14)
 
 ### Features
