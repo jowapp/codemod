@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.2](https://github.com/jowapp/codemod/compare/v1.0.1...v1.0.2) (2024-05-14)
+
+### Misc Changes
+
+- add keywords to package ([ae7acfa](https://github.com/jowapp/codemod/commit/ae7acfa9b63ecf51967502ad01aa43b5f022616a))
+
 ### [1.0.1](https://github.com/jowapp/codemod/compare/v1.0.0...v1.0.1) (2024-05-14)
 
 ### Misc Changes
