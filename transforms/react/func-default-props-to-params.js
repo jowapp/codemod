@@ -41,7 +41,7 @@ module.exports = (fileInfo, api, options) => {
     .find(j.ArrowFunctionExpression)
   if (componentCol.length <= 0) {
     process.stdout.write(
-      "This codemod transform only deals with the first defaultProps of a functional component per file. For a class component's defaultProps, consider manually refactoring it using `static defaultProps = {...}` instead. This file will now be skipped.\n",
+      'Class components will continue to support defaultProps on React 19 since there is no ES6 alternative. Please consider using static defaultProps to remove this alert.\n',
     )
     return null // skip transform
   }
