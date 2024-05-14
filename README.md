@@ -26,8 +26,11 @@ All jscodeshift's options are supported, and defaults are the same than the one 
 Options to [recast](https://github.com/benjamn/recast)'s printer can also be provided through jscodeshift's `printOptions` command line argument, as `react-codemod` does it:
 
 ```sh
-npx react-codemod <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"double\"}'"
+npx react-codemod <transform> <path> --jscodeshift="--printOptions='{\"tabWidth\":2}'"
 ```
+
+> [!NOTE]
+> Regarding `printOptions`, please check [here](https://github.com/jowapp/codemod/pull/3#issuecomment-2108375648) and [here](https://github.com/jowapp/codemod/pull/3#discussion_r1599700243)
 
 ### Unit Testing
 

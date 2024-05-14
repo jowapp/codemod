@@ -1,9 +1,7 @@
-const recast = require('recast')
-
 module.exports = (fileInfo, api, options) => {
   // console.log(fileInfo.path)
   const j = api.jscodeshift
-  const printOptions = options.printOptions || { quote: 'single' }
+  const printOptions = options.printOptions || {}
   const root = j(fileInfo.source)
 
   let isDirty = false

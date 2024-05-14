@@ -1,7 +1,9 @@
 'use strict'
 
 import path from 'node:path'
+import fs from 'fs'
 import { defineTest } from 'jscodeshift/dist/testUtils'
+import transform from '../../transforms/react/forward-ref-to-prop'
 
 const jsTests = [
   'function-expression',
@@ -10,13 +12,37 @@ const jsTests = [
   'arrow-function-expression-w-props-object-pattern',
 ]
 
+const jsTestsNoOutput = ['no-forward-ref']
+
 describe('react.forward-ref-to-prop', () => {
   jsTests.forEach((test) =>
     defineTest(
-      path.join(__dirname, '..'), // jscodeshift/src/testUtils.js utility assumes transform is one level up from __tests__ directory, but because of 'react' subfolder we have to go up 2 levels from this test file
+      path.join(__dirname, '..'),
       'transforms/react/forward-ref-to-prop',
       null,
-      `react/forward-ref-to-prop/${test}`, // above dirName arg also applies to __testfixtures__
+      `react/forward-ref-to-prop/${test}`,
     ),
   )
+
+  describe('transforms/react/forward-ref-to-prop', () => {
+    it.each(jsTestsNoOutput)('does not transform using "react/forward-ref-to-prop/%s"', (test) => {
+      const applyTransform = require('jscodeshift/dist/testUtils').applyTransform
+      const transformOptions = {}
+      const fixtureDir = path.join(
+        __dirname,
+        '..',
+        '..',
+        '__testfixtures__',
+        'react',
+        'forward-ref-to-prop',
+      )
+      const inputPath = path.join(fixtureDir, test + '.input.js')
+      const inputSource = fs.readFileSync(inputPath, 'utf8')
+      const output = applyTransform(transform, transformOptions, {
+        source: inputSource,
+        path: inputPath,
+      })
+      expect(output).toBe('')
+    })
+  })
 })
