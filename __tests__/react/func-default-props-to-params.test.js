@@ -8,6 +8,9 @@ import transform from '../../transforms/react/func-default-props-to-params'
 const jsTests = [
   'function-component',
   'function-component-w-default-export',
+  'function-component-w-default-export-and-merged-default-props',
+  'function-component-w-default-export-and-mismatching-default-props',
+  'function-component-w-default-export-and-partial-mismatching-default-props',
   'function-component-w-named-exports',
   'memo-function-component-w-default-export',
   'forward-ref-function-component-w-default-export',
