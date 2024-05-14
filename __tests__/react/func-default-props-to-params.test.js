@@ -5,7 +5,7 @@ import fs from 'fs'
 import { defineTest, applyTransform } from 'jscodeshift/dist/testUtils'
 import transform from '../../transforms/react/func-default-props-to-params'
 
-const jsTests = [
+const transformTests = [
   'function-component',
   'function-component-w-default-export',
   'function-component-w-default-export-and-merged-default-props',
@@ -16,12 +16,15 @@ const jsTests = [
   'forward-ref-function-component-w-default-export',
 ]
 
-const jsTestsNoOutput = ['function-component-wo-default-props']
+const noTransformTests = ['function-component-wo-default-props']
 
-const fixtureDir = path.join(__dirname, '../../__testfixtures__/react/func-default-props-to-params')
+const fixturesDir = path.join(
+  __dirname,
+  '../../__testfixtures__/react/func-default-props-to-params',
+)
 
 describe('react.func-default-props-to-params', () => {
-  jsTests.forEach((test) =>
+  transformTests.forEach((test) =>
     defineTest(
       path.join(__dirname, '..'),
       'transforms/react/func-default-props-to-params',
@@ -31,10 +34,10 @@ describe('react.func-default-props-to-params', () => {
   )
 
   describe('transforms/react/func-default-props-to-params', () => {
-    it.each(jsTestsNoOutput)(
+    it.each(noTransformTests)(
       'does not transform using "react/func-default-props-to-params/%s"',
       (test) => {
-        const inputPath = path.join(fixtureDir, `${test}.input.js`)
+        const inputPath = path.join(fixturesDir, `${test}.input.js`)
         const inputSource = fs.readFileSync(inputPath, 'utf8')
         const output = applyTransform(transform, undefined, {
           source: inputSource,
