@@ -38,15 +38,12 @@ const TRANSFORMERS = [
   if (pathsArgs.length > 0) {
     if (pathsArgs.some((path) => path.includes('*'))) {
       try {
-        // expand with globstar
         paths = await glob(pathsArgs, { ignore: 'node_modules/**' })
       } catch (e) {
         console.log(e)
         process.exit(1)
       }
     } else {
-      // user provided multiple paths or a glob pattern expanded by its shell...
-      // paths = pathsArgs.map(p => path.resolve(p))
       paths = pathsArgs
     }
   }
@@ -58,12 +55,12 @@ const TRANSFORMERS = [
     return value
   }
 
-  if (printOptions) options.printOptions = parsePrintOptions(printOptions)
-  if (!options.verbose && !(options.verbose === 0)) options.verbose = 1
-  // babel: apply babeljs to the transform file
-  // yargs parser automatically parses "--no-<option>"" flags to `{ <option>: false }`
-  if (!options.babel && options.babel !== false) options.babel = true
-  // other options can be left undefined and will be treated as if set to jscodeshift defaults
+  if (printOptions) {
+    options.printOptions = parsePrintOptions(printOptions)
+  }
+  if (!options.babel && options.babel !== false) {
+    options.babel = true
+  }
 
   try {
     await jscodeshift(transformerPath, paths, options)
